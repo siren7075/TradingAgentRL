@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stock Action Predictor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin-left: 10px;
+      border: none;
+      background-color: #2980b9;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1c5980;
+    }
+
+    .result-card {
+      background-color: #ecf0f1;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .summary {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+
+    td {
+      background-color: #fefefe;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Stock Action Predictor</h1>
+    <div class="input-group">
+      <input type="text" id="ticker" placeholder="Enter Ticker Symbol (e.g., AAPL)">
+      <button onclick="getPrediction()">Predict</button>
+    </div>
+    <div id="output"></div>
+  </div>
+
+  <script>
+  async function getPrediction() {
+    const ticker = document.getElementById('ticker').value.trim();
+    const output = document.getElementById('output');
+    output.innerHTML = "Loading...";
+
+    if (!ticker) {
+      output.innerHTML = "<p class='error'>Please enter a ticker symbol.</p>";
+      return;
+    }
+
+    try {
+      const response = await fetch(`/run_prediction?ticker=${ticker}`);
+      const data = await response.json();
+
+      if (data.error) {
+        output.innerHTML = `<p class="error">${data.error}</p>`;
+        return;
+      }
+
+      let html = `
+        <div class="result-card">
+          <div class="summary">
+            <strong>Ticker:</strong> ${data.ticker} <br>
+            <strong>Action:</strong> <span style="color:green;">${data.action}</span><br>
+            <strong>Confidence:</strong> ${(data.confidence * 100).toFixed(2)}%<br>
+            <strong>Suggested Shares:</strong> ${data.suggested_shares}<br>
+            <strong>Comments:</strong> <em>${data.comments || 'N/A'}</em>
+          </div>
+
+          <table>
+            <tr>
+              <th>Model</th>
+              <th>Accuracy (90d)</th>
+              <th>Annualized Return</th>
+              <th>Sharpe Ratio</th>
+              <th>Max Drawdown</th>
+              <th>Volatility</th>
+            </tr>`;
+
+      data.models.forEach(model => {
+        html += `<tr>
+          <td>${model.name}</td>
+          <td>${(model.accuracy_90d * 100).toFixed(2)}%</td>
+          <td>${(model.annualized_return * 100).toFixed(2)}%</td>
+          <td>${model.sharpe_ratio.toFixed(2)}</td>
+          <td>${(model.max_drawdown * 100).toFixed(2)}%</td>
+          <td>${(model.volatility * 100).toFixed(2)}%</td>
+        </tr>`;
+      });
+
+      html += "</table></div>";
+      output.innerHTML = html;
+
+    } catch (err) {
+      output.innerHTML = `<p class="error">Error: ${err.message}</p>`;
+    }
+  }
+</script>
+</body>
+</html>
