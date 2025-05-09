@@ -109,6 +109,7 @@
   <script>
   async function getPrediction() {
     const ticker = document.getElementById('ticker').value.trim();
+    console.log(ticker);
     const output = document.getElementById('output');
     output.innerHTML = "Loading...";
 
@@ -164,7 +165,7 @@
       output.innerHTML = `<p class="error">Error: ${err.message}</p>`;
     }
   }
-  
+
   async function initFDC3() {
 
       if (typeof fdc3 === "undefined") {
@@ -175,7 +176,7 @@
 
       }
 
- 
+
 
       try {
 
@@ -187,15 +188,15 @@
 
             console.log(context);
 
-			const ticker = context.id.ticker;
+			const tickerRaw = context.id.ticker;
 
-           const ticker = tickerRaw ? tickerRaw.split(" ")[0] : "";
+           const tickerSymbol = tickerRaw ? tickerRaw.split(" ")[0] : "";
 
-          if (ticker) {
+          if (tickerSymbol) {
 
-            console.log("ticker: ", ticker);
+            console.log("ticker: ", tickerSymbol);
 
-            document.getElementById("ticker").textContent = ticker;
+            document.getElementById("ticker").value = tickerSymbol;
 			document.getElementById("predictButton").click();
 
           } else {
