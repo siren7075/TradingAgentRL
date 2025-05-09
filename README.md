@@ -20,7 +20,7 @@ On command prompt,  cd into the folder and run the below comments:
 2. Trading Agents: [https://github.com/benstaf/FinRL_DeepSeek ](https://huggingface.co/benstaf/Trading_agents/tree/main)
 
 ## Result
-### 7%-13% portfolio value increase in the past 60 days using PPO agent (May 9th), beating NASDAQ 3.25% increase during the time
+### 7%-13% asset value increase in the past 60 days using PPO agent (May 9th), beating NASDAQ 3.25% increase during the time
 ![image](https://github.com/user-attachments/assets/5a32b6f1-9dc7-453b-9c36-2529c979a041)
 
 ### sample action per timestamp AAPL
