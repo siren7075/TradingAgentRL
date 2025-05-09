@@ -15,10 +15,6 @@ On command prompt,  cd into the folder and run the below comments:
 4. Input the ticker and you will see the suggestion on whether to buy/sell the stock and the agent performances
 5. It is also designed to integrate FDC3 environment that allows listerning on the ticker indicator and change the results
 
-## Reference
-1. FinRL: https://github.com/AI4Finance-Foundation/FinRL
-2. Trading Agents: https://github.com/benstaf/FinRL_DeepSeek ](https://huggingface.co/benstaf/Trading_agents/tree/main (mainly use PPO)
-
 ## Result
 ### 7%-13% asset value increase in the past 60 days using PPO agent (May 9th), beating NASDAQ 3.25% increase
 ![image](https://github.com/user-attachments/assets/5a32b6f1-9dc7-453b-9c36-2529c979a041)
@@ -29,6 +25,10 @@ On command prompt,  cd into the folder and run the below comments:
 ### UI mockup Flask Framework
 
 ![image](https://github.com/user-attachments/assets/0be99414-e62e-4ad6-a21f-1729dde7334c)
+
+## Reference
+1. FinRL: https://github.com/AI4Finance-Foundation/FinRL
+2. Trading Agents: https://github.com/benstaf/FinRL_DeepSeek ](https://huggingface.co/benstaf/Trading_agents/tree/main (mainly use PPO)
 
 
 
