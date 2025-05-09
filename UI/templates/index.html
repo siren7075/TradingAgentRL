@@ -101,7 +101,7 @@
     <h1>Stock Action Predictor</h1>
     <div class="input-group">
       <input type="text" id="ticker" placeholder="Enter Ticker Symbol (e.g., AAPL)">
-      <button onclick="getPrediction()">Predict</button>
+      <button id="predictButton" onclick="getPrediction()">Predict</button>
     </div>
     <div id="output"></div>
   </div>
@@ -196,6 +196,7 @@
             console.log("ticker: ", ticker);
 
             document.getElementById("ticker").textContent = ticker;
+			document.getElementById("predictButton").click();
 
           } else {
 
