@@ -16,7 +16,7 @@ On command prompt,  cd into the folder and run the below comments:
 5. It is also designed to integrate FDC3 environment that allows listerning on the ticker indicator and change the results
 
 ## Result
-### 7%-13% asset value increase in the past 60 days using PPO agent (May 9th), beating NASDAQ 3.25% increase
+### 7%-13% asset value increase in the past 60 days using PPO agent, beating NASDAQ 60-day 3.25% increase May 9th
 ![image](https://github.com/user-attachments/assets/5a32b6f1-9dc7-453b-9c36-2529c979a041)
 
 ### sample action per timestamp AAPL
