@@ -17,7 +17,7 @@ On command prompt,  cd into the folder and run the below comments:
 
 ## Reference
 1. FinRL: https://github.com/AI4Finance-Foundation/FinRL
-2. Trading Agents: [https://github.com/benstaf/FinRL_DeepSeek ](https://huggingface.co/benstaf/Trading_agents/tree/main)
+2. Trading Agents: https://github.com/benstaf/FinRL_DeepSeek ](https://huggingface.co/benstaf/Trading_agents/tree/main (mainly use PPO)
 
 ## Result
 ### 7%-13% asset value increase in the past 60 days using PPO agent (May 9th), beating NASDAQ 3.25% increase during the time
