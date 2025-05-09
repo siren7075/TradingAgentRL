@@ -11,7 +11,7 @@ Our 2-day hackathon project RLlyStocked utilizes Reinforcement Learning to analy
 On command prompt,  cd into the folder and run the below comments:
 1. pip install flash
 2. python app.py
-3. Navigate to http://localhost:5000/ in a browser
+3. Navigate to localhost url in a browser
 4. Input the ticker and you will see the suggestion on whether to buy/sell the stock and the agent performances
 5. It is also designed to integrate FDC3 environment that allows listerning on the ticker indicator and change the results
 
