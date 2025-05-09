@@ -164,6 +164,58 @@
       output.innerHTML = `<p class="error">Error: ${err.message}</p>`;
     }
   }
+  
+  async function initFDC3() {
+
+      if (typeof fdc3 === "undefined") {
+
+        document.getElementById("ticker").textContent = "FDC3 not available.";
+
+        return;
+
+      }
+
+ 
+
+      try {
+
+			await fdc3.joinUserChannel('fdc3.channel.1');
+
+			console.log("connected to channel");
+
+			await fdc3.addContextListener("fdc3.instrument", context => {
+
+            console.log(context);
+
+			const ticker = context.id.ticker;
+
+           const ticker = tickerRaw ? tickerRaw.split(" ")[0] : "";
+
+          if (ticker) {
+
+            console.log("ticker: ", ticker);
+
+            document.getElementById("ticker").textContent = ticker;
+
+          } else {
+
+            console.log("No ticker found in message")
+
+            document.getElementById("ticker").textContent = "No ticker found in message.";
+
+          }
+
+        });
+
+      } catch (error) {
+
+        document.getElementById("ticker").textContent = "Error adding context listener.";
+
+        console.error(error);
+      }
+
+    }
+	window.addEventListener("DOMContentLoaded", initFDC3);
 </script>
 </body>
 </html>
